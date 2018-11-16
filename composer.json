@@ -15,5 +15,12 @@
         "psr-4": {
             "Yangzie\\DingtalkLogin\\": "src"
         }
+    },
+    "extra": {
+      "laravel": {
+        "providers": [
+          "Yangzie\\DingtalkLogin\\Providers\\DingtalkLoginProvider"
+        ]
+      }
     }
 }

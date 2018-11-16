@@ -149,7 +149,7 @@ class DingtalkLogin
 
         } catch (\Exception $exception) {
 
-            return '你不是企业用户';
+            return '非法请求';
 
         }
 
@@ -160,6 +160,9 @@ class DingtalkLogin
         $body = $this->httpClient->get($url)->getBody()->getContents();
 
         $bodyArr = json_decode($body, true);
+
+
+
 
         return $bodyArr;
     }
