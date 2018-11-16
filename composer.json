@@ -19,7 +19,7 @@
     "extra": {
       "laravel": {
         "providers": [
-          "Yangzie\\DingtalkLogin\\Providers\\DingtalkLoginProvider"
+          "Yangzie\\DingtalkLogin\\DingtalkLoginProvider"
         ]
       }
     }

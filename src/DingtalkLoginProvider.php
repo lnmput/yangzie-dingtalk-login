@@ -1,8 +1,7 @@
 <?php
-namespace Yangzie\DingtalkLogin\Providers;
+namespace Yangzie\DingtalkLogin;
 
 use Illuminate\Support\ServiceProvider;
-use Yangzie\DingtalkLogin\DingtalkLogin;
 
 class DingtalkLoginProvider extends ServiceProvider
 {
@@ -18,8 +17,6 @@ class DingtalkLoginProvider extends ServiceProvider
         });
 
         $this->app->alias(DingtalkLogin::class, 'dinglogin');
-
-        include dirname(dirname(__FILE__)).'/routes.php';
 
         $this->publishes([
             dirname(dirname(__FILE__)).'/dingtalk.php' => config_path('dingtalk.php')
