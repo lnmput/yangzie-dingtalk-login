@@ -19,7 +19,7 @@ class DingtalkLoginProvider extends ServiceProvider
         $this->app->alias(DingtalkLogin::class, 'dinglogin');
 
         $this->publishes([
-            dirname(dirname(__FILE__)).'/dingtalk.php' => config_path('dingtalk.php')
+            __DIR__.'/dingtalk.php' => config_path('dingtalk.php')
         ], 'dingtalk');
     }
 
