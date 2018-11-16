@@ -52,20 +52,30 @@ class DingtalkLogin
 
     }
 
+
     /**
-     * 登录
+     * 登录载入扫码页面
      *
      * @return \Illuminate\Http\RedirectResponse
+     * @throws DingtalkLoginException
      */
     public function login()
     {
-        $domain = config('app.url');
+        try {
 
-        $redirectUrl = $domain.'/login/dingtalk/callback';
+            $domain = config('app.url');
 
-        $url = 'https://oapi.dingtalk.com/connect/qrconnect?appid='.$this->appId.'&response_type=code&scope=snsapi_login&state=STATE&redirect_uri='.$redirectUrl;
+            $redirectUrl = $domain.'/login/dingtalk/callback';
 
-        return \Redirect::to($url);
+            $url = 'https://oapi.dingtalk.com/connect/qrconnect?appid='.$this->appId.'&response_type=code&scope=snsapi_login&state=STATE&redirect_uri='.$redirectUrl;
+
+            return \Redirect::to($url);
+
+        } catch (\Exception $exception) {
+
+            throw new DingtalkLoginException('扫码页面请求异常:'.$exception->getMessage());
+
+        }
     }
 
 
@@ -73,8 +83,22 @@ class DingtalkLogin
      * 回调
      *
      * @return mixed|string
+     * @throws DingtalkLoginException
      */
     public function callback()
+    {
+        try {
+            return $this->doCallback();
+        } catch (\Exception $exception) {
+            throw new DingtalkLoginException('回调错误:'.$exception->getMessage());
+        }
+    }
+
+
+    /**
+     * @return mixed|string
+     */
+    protected function doCallback()
     {
         $tmpAuthCode = $this->request->code;
 
@@ -147,7 +171,7 @@ class DingtalkLogin
 
             $userId = $bodyArr['userid'];
 
-        } catch (\Exception $exception) {
+        } catch (DingtalkLoginException $exception) {
 
             return '非法请求';
 
@@ -160,9 +184,6 @@ class DingtalkLogin
         $body = $this->httpClient->get($url)->getBody()->getContents();
 
         $bodyArr = json_decode($body, true);
-
-
-
 
         return $bodyArr;
     }
