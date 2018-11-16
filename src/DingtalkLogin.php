@@ -61,7 +61,7 @@ class DingtalkLogin
     {
         $domain = config('app.url');
 
-        $redirectUrl = $domain.'/login/dingding/callback';
+        $redirectUrl = $domain.'/login/dingtalk/callback';
 
         $url = 'https://oapi.dingtalk.com/connect/qrconnect?appid='.$this->appId.'&response_type=code&scope=snsapi_login&state=STATE&redirect_uri='.$redirectUrl;
 
