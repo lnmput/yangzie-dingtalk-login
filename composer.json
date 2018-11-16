@@ -1,0 +1,19 @@
+{
+    "name": "yangzie/dingtalk-login",
+    "description": "dingtalk",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "yangzie",
+            "email": "lnmput@gmail.com"
+        }
+    ],
+    "require": {
+      "guzzlehttp/guzzle": "^6.3"
+    },
+    "autoload": {
+        "psr-4": {
+            "Yangzie\\DingtalkLogin\\": "src"
+        }
+    }
+}
