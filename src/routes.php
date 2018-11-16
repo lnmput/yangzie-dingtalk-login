@@ -1,6 +1,6 @@
 <?php
 
-Route::get('login/dingtalk', 'Yangzie\Dingtalk\DingtalkLogin@login')->name('login.dingtalk');;
+Route::get('login/dingtalk', 'Yangzie\DingtalkLogin\DingtalkLogin@login')->name('login.dingtalk');;
 
-Route::get('login/dingtalk/callback', 'Yangzie\Dingtalk\DingtalkLogin@callback');
+Route::get('login/dingtalk/callback', 'Yangzie\DingtalkLogin\DingtalkLogin@callback');
 
